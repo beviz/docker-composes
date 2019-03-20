@@ -1,0 +1,17 @@
+version: '2'
+services:
+  transmission:
+    container_name: transmission
+    restart: unless-stopped
+    image: linuxserver/transmission:116
+    volumes:
+      - ./config:/config
+      - ./web:/usr/share/transmission/web
+      - ${DOWNLOADS}:/downloads
+      - ${WATCH}:/watch
+    ports:
+      - ${PORT}:9091
+    environment:
+      - PGID:'0'
+      - PUID:'0'
+      - TZ:'Beijing'
